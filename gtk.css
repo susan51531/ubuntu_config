@@ -1,0 +1,21 @@
+@define-color bg-grey #3f3e3a;
+@define-color active #002b36;
+
+TerminalWindow .notebook {
+  border: 0;
+  padding: 0;
+  color: #eee;
+}
+
+TerminalWindow .notebook tab:active {
+  background-color: shade(@active, 1);
+}
+
+TerminalWindow .notebook tab:focus {
+  outline: 0 solid transparent; 
+}
+
+TerminalWindow .notebook tab {
+  border-radius: 0px;
+  background-color: shade(@bg-grey, 1);
+}
