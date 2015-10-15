@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while read d;do
+    #echo "update $d"
+    updatedb -U $d -l 0 -o "$d/mlocate.db"
+done < PATH/TO/myupdatedb.conf
+
+#myupdatedb.conf
+#directory list
+
+exit 0
+

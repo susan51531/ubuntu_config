@@ -1,0 +1,15 @@
+#!/bin/bash
+
+arguments="locate "
+while read d;do
+    arguments="$arguments -d \"$d/mlocate.db\" "
+done < PATH/TO/myupdatedb.conf
+
+#myupdatedb.conf
+#direcotry list
+
+arguments="$arguments $*"
+bash -c "$arguments"
+
+exit 0
+
