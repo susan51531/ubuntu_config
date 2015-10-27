@@ -1,0 +1,12 @@
+{
+  "name": "fileuploader",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "busboy": "^0.2.9",
+    "express": "^4.11.2",
+    "fs-extra": "^0.16.3"
+  },
+  "scripts": {
+  }
+}
