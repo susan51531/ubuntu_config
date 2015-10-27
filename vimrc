@@ -36,6 +36,7 @@ Plugin 'ctrlp.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'fatih/vim-go'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -243,3 +244,10 @@ set expandtab
 set autoread
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" http://stackoverflow.com/a/4262209/1577263
+nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+vnoremap <silent> <Leader>* :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy:let @/=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
