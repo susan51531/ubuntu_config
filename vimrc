@@ -57,20 +57,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Config NERDTree
-map <F2> :NERDTreeToggle<CR>
-
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 " An example for a vimrc file.
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
@@ -259,6 +245,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Config NERDTree
+map <F2> :NERDTreeToggle<CR>
+let NERDTreeMinimalUI=0
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " http://stackoverflow.com/a/4262209/1577263
 nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
