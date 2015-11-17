@@ -247,7 +247,7 @@ set expandtab
 
 " Config NERDTree
 map <F2> :NERDTreeToggle<CR>
-let NERDTreeMinimalUI=0
+let NERDTreeMinimalUI=1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " http://stackoverflow.com/a/4262209/1577263
 nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
