@@ -26,17 +26,22 @@ Plugin 'gmarik/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-Plugin 'file:///home/zwx/.vim/bundle/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'rking/ag.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'ctrlp.vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'groenewege/vim-less'
-Plugin 'fatih/vim-go'
-Plugin 'jistr/vim-nerdtree-tabs'
+" Plugin 'fatih/vim-go'
+Plugin 'helino/vim-json'
 Plugin 'tpope/vim-fugitive'
+Plugin 'easymotion/vim-easymotion'
+" Plugin 'Raimondi/delimitMate'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -101,6 +106,7 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set nowritebackup " fix some fs watch problems https://github.com/gruntjs/grunt-contrib-watch/issues/13
+set autoread
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -196,10 +202,23 @@ set si
 set nu
 
 
+" ================ Completion =======================
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*     " MacOSX/Linux
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/bower_components/*,*/assets/*,*/vendor/*     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+"set wildignore+=*.png,*.jpg,*.gif
 
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
@@ -240,9 +259,6 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-"
-set autoread
-
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " http://stackoverflow.com/a/4262209/1577263
 nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
@@ -251,3 +267,9 @@ vnoremap <silent> <Leader>* :<C-U>
   \gvy:let @/=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
+
+
+
+" Auto indent pasted text
+nnoremap p p=`]<C-o>
+nnoremap P P=`]<C-o>
