@@ -42,6 +42,7 @@ Plugin 'easymotion/vim-easymotion'
 " Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'vasconcelloslf/vim-interestingwords'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -250,12 +251,13 @@ map <F2> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " http://stackoverflow.com/a/4262209/1577263
-nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-vnoremap <silent> <Leader>* :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy:let @/=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
+" disabled using 'vasconcelloslf/vim-interestingwords'
+" nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" vnoremap <silent> <Leader>* :<C-U>
+"   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+"   \gvy:let @/=substitute(
+"   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
+"   \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
 
 
 
