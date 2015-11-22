@@ -42,7 +42,10 @@ Plugin 'easymotion/vim-easymotion'
 " Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'vasconcelloslf/vim-interestingwords'
+Plugin 'susan51531/vim-interestingwords'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -121,6 +124,7 @@ if &t_Co > 2 || has("gui_running")
   set guioptions -=r
   set guioptions -=R
   set background=dark
+  "colorscheme Tomorrow-Night
   colorscheme solarized
 endif
 
@@ -258,9 +262,17 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 "   \gvy:let @/=substitute(
 "   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
 "   \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
-
-
+" more color:https://github.com/chriskempson/tomorrow-theme
+let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF', '#aeee00', '#ff0000', '#0000ff', '#b88823', '#ffa724', '#ff2c4b']
+let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '100', '80', '10', '193', '70', '178']
+"let g:interestingWordsCaseSensitive = 1
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
+
+set runtimepath+=~/tmp/viml/
+
+let g:javascript_enable_domhtmlcss = 1
+nmap <F8> :TagbarToggle<CR>
+noremap <F3> :Autoformat<CR>
