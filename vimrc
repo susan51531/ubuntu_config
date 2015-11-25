@@ -256,12 +256,12 @@ let NERDTreeMinimalUI=1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " http://stackoverflow.com/a/4262209/1577263
 " disabled using 'vasconcelloslf/vim-interestingwords'
-" nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-" vnoremap <silent> <Leader>* :<C-U>
-"   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-"   \gvy:let @/=substitute(
-"   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
-"   \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
+nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+vnoremap <silent> <Leader>* :<C-U>
+\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+\gvy:let @/=substitute(
+\escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
+\gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
 " more color:https://github.com/chriskempson/tomorrow-theme
 let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF', '#aeee00', '#ff0000', '#0000ff', '#b88823', '#ffa724', '#ff2c4b']
 let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '100', '80', '10', '193', '70', '178']
