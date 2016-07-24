@@ -35,17 +35,26 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ctrlp.vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'groenewege/vim-less'
-" Plugin 'fatih/vim-go'
 Plugin 'helino/vim-json'
-Plugin 'tpope/vim-fugitive'
-Plugin 'easymotion/vim-easymotion'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'easymotion/vim-easymotion'
+"Plugin 'gcmt/breeze.vim'
 " Plugin 'Raimondi/delimitMate'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 Plugin 'susan51531/vim-interestingwords'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'majutsushi/tagbar'
+"Plugin 'ternjs/tern_for_vim'
+"Plugin 'Chiel92/vim-autoformat'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'fatih/vim-go'
+"Plugin 'artur-shaik/vim-javacomplete2'
+" ARM linux tools
+"Plugin 'wesleyche/SrcExpl'
+"Plugin 'taglist.vim'
+"Plugin 'msanders/cocoa.vim'
+"Plugin 'toyamarinyon/vim-swift'
+Plugin 'altercation/vim-colors-solarized'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -89,7 +98,7 @@ if has("vms")
 else
   set backup		" keep a backup file
 endif
-set t_Co=256
+
 set nobackup
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -97,6 +106,8 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set nowritebackup " fix some fs watch problems https://github.com/gruntjs/grunt-contrib-watch/issues/13
 set autoread
+set cursorline
+set scrolloff=2
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -113,20 +124,25 @@ if has('mouse')
   set mouse=a
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
   set hlsearch
   set guioptions -=T
   set guioptions -=l
   set guioptions -=L
   set guioptions -=r
   set guioptions -=R
-  set background=dark
-  "colorscheme Tomorrow-Night
-  colorscheme solarized
 endif
+
+syntax enable
+set t_Co=256
+"set t_ut=
+" Switch syntax highlighting on, when the terminal has colors
+"set background=dark
+"colorscheme Tomorrow-Night
+"let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -224,13 +240,13 @@ set listchars=tab:▸\ ,eol:¬
 " set exrc
 " set secure
 
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set undodir=~/.vim/undo//
-
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
+set undodir=~/.vim/undo/
 
 au BufNewFile,BufRead *.handlebars set filetype=html
 au BufNewFile,BufRead *.jsp set filetype=html
+au BufNewFile,BufRead *.mxml set filetype=xml
 "au BufNewFile,BufRead *.less set filetype=css
 map <C-Space> <Nop>
 imap <C-Space> <Nop> 
@@ -250,10 +266,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-" Config NERDTree
-map <F2> :NERDTreeToggle<CR>
-let NERDTreeMinimalUI=1
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
 " http://stackoverflow.com/a/4262209/1577263
 " disabled using 'vasconcelloslf/vim-interestingwords'
 nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
@@ -271,8 +284,102 @@ let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222', '1
 nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
 
-set runtimepath+=~/tmp/viml/
-
+" Configuration vim-javascript
 let g:javascript_enable_domhtmlcss = 1
 nmap <F8> :TagbarToggle<CR>
 noremap <F3> :Autoformat<CR>
+
+"let g:clang_user_options='|| exit 0'
+"set shortmess+=c
+
+" breeze.vim
+" jump to all visible opening tags after the cursor position
+"nmap <leader>j <Plug>(breeze-jump-tag-forward)
+" jump to all visible opening tags before the cursor position
+"nmap <leader>J <Plug>(breeze-jump-tag-backward)
+
+" jump to all visible HTML attributes after the cursor position
+"nmap <leader>a <Plug>(breeze-jump-attribute-forward)
+" jump to all visible HTML attributes before the cursor position
+"nmap <leader>A <Plug>(breeze-jump-attribute-backward)
+
+" move to the next tag
+"nmap <C-N> <Plug>(breeze-next-tag)
+" move to the previous tag
+"nmap <C-B> <Plug>(breeze-prev-tag)
+
+" move to the next attribute
+"nmap <C-A> <Plug>(breeze-next-attribute)
+" move to the previous attribute
+"nmap <C-S> <Plug>(breeze-prev-attribute)
+
+runtime macros/matchit.vim
+autocmd FileType java set omnifunc=javacomplete#Complete
+
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" ARM linux source code
+" ------------------------------
+"  ctags database path
+" ------------------------------
+"set tags=/workspace/linux/0.11/linux-0.11-origin/tags
+"set tags=/workspace/linux/linux-2.6.30.4/tags
+
+" ------------------------------
+"  cscope database path
+" ------------------------------
+"set csprg=/usr/bin/cscope "cscope path
+"set csto=0                "cscope DB search first
+"set cst                   "cscope DB tag DB search
+"set nocsverb              "verbose off
+
+" ------------------------------
+"  Tag List
+" ------------------------------
+nmap <F7> :TlistToggle<CR>
+let Tlist_Ctags_Cmd="/usr/bin/ctags"
+let Tlist_Inc_Winwidth=0
+let Tlist_Exit_OnlyWindow=0
+let Tlist_Auto_Open=0
+let Tlist_Use_Right_Window=1
+
+" ------------------------------
+"  Source Explorer
+" ------------------------------
+nmap <F8> :SrcExplToggle<CR>
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
+
+let g:SrcExpl_winHeight = 8
+let g:SrcExpl_refreshTime = 100
+let g:SrcExpl_jumpKey = "<ENTER>"
+let g:SrcExpl_gobackKey = "<SPACE>"
+let g:SrcExpl_isUpdateTags = 0
+
+" ------------------------------
+"  NERD Tree
+" ------------------------------
+map <F2> :NERDTreeToggle<CR>
+let NERDTreeMinimalUI=1
+let NERDTreeWinPos = "left"
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <leader>r :NERDTreeFind<cr>
+"当打开vim且没有文件时自动打开NERDTree
+"autocmd vimenter * if !argc() | NERDTree | endif
+" 只剩 NERDTree时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"let NERDTreeIgnore = ['\.css$', '\.map', '^node_modules$']
+
+" ref:https://github.com/jfbisson4/vim-tmux-configs/blob/master/.vimrc
+" unmap F1 help
+nmap <F1> <nop>
+imap <F1> <nop>
